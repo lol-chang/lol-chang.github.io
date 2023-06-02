@@ -1,0 +1,549 @@
+* {
+    margin: 0;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+    background-color: white;
+}
+
+div.nav_container {
+    overflow: hidden;
+    text-align: center;
+}
+
+/* 상태바 클릭 시각화 */
+.nav_container div:hover {
+    background-color: #a6c1ee;
+    border-radius: 30%;
+}
+
+.nav_container div:active {
+    background-color: #a6c1ee;
+    color: white;
+}
+
+/* 스마트폰 */
+@media screen and (max-width: 499px) {
+    .nav_container>div {
+        display: inline-block;
+        width: 30%;
+        padding-top: 4%;
+        padding-bottom: 3%;
+        margin: 0%;
+    }
+
+    /* main page - phone version */
+    .main_container {
+        margin: 10%;
+        justify-content: center;
+    }
+
+    #profile_photo {
+        width: 90%;
+        height: 90%;
+    }
+
+    .main_text {
+        padding-top: 10%;
+    }
+
+    .main_text h1 {
+        padding-top: 10%;
+    }
+
+    .insta {
+        width: 20%;
+        height: 20%;
+    }
+
+    .github {
+        width: 20%;
+        height: 20%;
+    }
+
+    .last a {
+        padding-right: 10%;
+    }
+
+    /* intro page - phone version */
+    .intro_container {
+        padding-top: 20%;
+    }
+
+    .intro_0_img {
+        background-image: url("./images/cat1.jpeg");
+        background-size: 100% 100%;
+        border-radius: 4%;
+
+    }
+
+    .intro_1_img {
+        background-image: url("./images/me1.png");
+        background-size: 100% 100%;
+        border-radius: 15%;
+    }
+
+    .intro_2_img {
+        background-image: url("./images/me2.png");
+        background-size: 100% 100%;
+        border-radius: 35%;
+    }
+
+    .intro_3_img {
+        background-image: url("./images/me3.png");
+        background-size: 100% 100%;
+        border-radius: 50%;
+    }
+
+
+    .intro_text {
+        margin-top: 10%;
+        padding-top: 10%;
+    }
+
+    .butt {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .butt p {
+        font-size: 2em;
+        font-style: italic;
+        font-weight: bold;
+        text-align: center;
+        display: block;
+        line-height: 70px;
+        text-decoration: none;
+    }
+
+    #left-button {
+        margin-right: 30px;
+        width: 150px;
+        height: 70px;
+        background-color: #a6c1ee;
+        border: 10px solid #FFFFFF;
+        border-radius: 30px;
+        box-shadow: 5px 5px 5px #A9A9A9;
+    }
+
+    #right-button {
+        width: 150px;
+        height: 70px;
+        background-color: #a6c1ee;
+        border: 10px solid #FFFFFF;
+        border-radius: 30px;
+        box-shadow: 5px 5px 5px #A9A9A9;
+    }
+
+    #button>p {
+        display: block;
+        line-height: 70px;
+        font-size: 2em;
+        font-style: italic;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    /* tmi page - phone version */
+    .tmi {
+        background-image: url("images/tmi_img.jpeg");
+        background-repeat: no-repeat;
+        background-size: auto;
+        background-position: center;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    /* 요소 중앙 배치 */
+    .tmi_container {
+        width: 500px;
+        height: 250px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -250px;
+        margin-top: -125px;
+        text-align: center;
+    }
+
+    .tmi_container>h1 {
+        background-color: rgba(238, 166, 166, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .tmi_container>h2 {
+        display: inline;
+        background-color: rgba(255, 0, 0, 0.8);
+    }
+}
+
+/* 태블릿 */
+@media screen and (min-width: 500px) and (max-width: 799px) {
+    .nav_container>div {
+        display: inline-block;
+        width: 30%;
+        padding-top: 4%;
+        padding-bottom: 3%;
+        margin: 0px;
+    }
+
+    /* main page - tablet version */
+    .main_container {
+        margin: 40px;
+        padding-top: 55px;
+        justify-content: center;
+    }
+
+    #profile_photo {
+        width: 90%;
+        height: 90%;
+    }
+
+    .main_text {
+        padding-top: 50px;
+    }
+
+    .main_text h1 {
+        padding-top: 50px;
+    }
+
+    .insta {
+        width: 50px;
+        height: 50px;
+    }
+
+    .github {
+        width: 50px;
+        height: 50px;
+    }
+
+    .last a {
+        padding-right: 40px;
+    }
+
+    /* intro page - tablet version */
+    .intro_container {
+        padding-top: 55px;
+        
+    }
+
+    .intro_0_img {
+        background-image: url("./images/cat1.jpeg");
+        background-size: 500px 500px;
+        border-radius: 4%;
+
+    }
+
+    .intro_1_img {
+        background-image: url("./images/me1.png");
+        background-size: 500px 500px;
+        border-radius: 15%;
+    }
+
+    .intro_2_img {
+        background-image: url("./images/me2.png");
+        background-size: 500px 500px;
+        border-radius: 35%;
+    }
+
+    .intro_3_img {
+        background-image: url("./images/me3.png");
+        background-size: 500px 500px;
+        border-radius: 50%;
+    }
+
+    .intro_img {
+        margin-left: 130px;
+        margin-top: 50px;
+    }
+
+    .intro_text {
+        margin-left: 200px;
+        margin-top: 50px;
+        padding-top: 40px;
+    }
+
+    .butt {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .butt p {
+        font-size: 2em;
+        font-style: italic;
+        font-weight: bold;
+        text-align: center;
+        display: block;
+        line-height: 70px;
+        text-decoration: none;
+    }
+
+    #left-button {
+        margin-right: 30px;
+        width: 150px;
+        height: 70px;
+        background-color: #a6c1ee;
+        border: 10px solid #FFFFFF;
+        border-radius: 30px;
+        box-shadow: 5px 5px 5px #A9A9A9;
+    }
+
+    #right-button {
+        width: 150px;
+        height: 70px;
+        background-color: #a6c1ee;
+        border: 10px solid #FFFFFF;
+        border-radius: 30px;
+        box-shadow: 5px 5px 5px #A9A9A9;
+    }
+
+    #button>p {
+        display: block;
+        line-height: 70px;
+        font-size: 2em;
+        font-style: italic;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    /* tmi page - tablet version */
+    .tmi {
+        background-image: url("images/tmi_img.jpeg");
+        background-repeat: no-repeat;
+        background-size: auto;
+        background-position: center;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    /* 요소 중앙 배치 */
+    .tmi_container {
+        width: 500px;
+        height: 250px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -250px;
+        margin-top: -125px;
+        text-align: center;
+    }
+
+    .tmi_container>h1 {
+        background-color: rgba(238, 166, 166, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .tmi_container>h2 {
+        display: inline;
+        background-color: rgba(255, 0, 0, 0.8);
+    }
+}
+
+/* 모니터 */
+@media (min-width: 800px) {
+    .nav_container>div {
+        display: inline-block;
+        width: 100px;
+        height: 15px;
+        margin: 10px 60px;
+        padding: 10px;
+    }
+
+    /* main page-monitor version */
+    .main_container {
+        margin: 40px;
+        padding-top: 55px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #profile_photo {
+        width: 90%;
+        height: 90%;
+    }
+
+    .main_text {
+        padding-top: 50px;
+    }
+
+    .main_text h1 {
+        padding-top: 50px;
+    }
+
+    .insta {
+        width: 50px;
+        height: 50px;
+    }
+
+    .github {
+        width: 50px;
+        height: 50px;
+    }
+
+    .last a {
+        padding-right: 40px;
+    }
+
+    /* intro page - monitor version */
+    .intro_container {
+        padding-top: 55px;
+        display: flex;
+    }
+
+    .intro_0_img {
+        background-image: url("./images/cat1.jpeg");
+        background-size: 500px 500px;
+        border-radius: 4%;
+
+    }
+
+    .intro_1_img {
+        background-image: url("./images/me1.png");
+        background-size: 500px 500px;
+        border-radius: 15%;
+    }
+
+    .intro_2_img {
+        background-image: url("./images/me2.png");
+        background-size: 500px 500px;
+        border-radius: 35%;
+    }
+
+    .intro_3_img {
+        background-image: url("./images/me3.png");
+        background-size: 500px 500px;
+        border-radius: 50%;
+    }
+
+    .intro_img {
+        margin-left: 130px;
+        margin-top: 50px;
+    }
+
+    .intro_text {
+        margin-left: 200px;
+        margin-top: 50px;
+        padding-top: 40px;
+    }
+
+    .butt {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .butt p {
+        font-size: 2em;
+        font-style: italic;
+        font-weight: bold;
+        text-align: center;
+        display: block;
+        line-height: 70px;
+        text-decoration: none;
+    }
+
+    #left-button {
+        margin-right: 30px;
+        width: 150px;
+        height: 70px;
+        background-color: #a6c1ee;
+        border: 10px solid #FFFFFF;
+        border-radius: 30px;
+        box-shadow: 5px 5px 5px #A9A9A9;
+    }
+
+    #right-button {
+        width: 150px;
+        height: 70px;
+        background-color: #a6c1ee;
+        border: 10px solid #FFFFFF;
+        border-radius: 30px;
+        box-shadow: 5px 5px 5px #A9A9A9;
+    }
+
+    #button>p {
+        display: block;
+        line-height: 70px;
+        font-size: 2em;
+        font-style: italic;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    /* tmi page */
+    .tmi {
+        background-image: url("images/tmi_img.jpeg");
+        background-repeat: no-repeat;
+        background-size: auto;
+        background-position: center;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    /* 요소 중앙 배치 */
+    .tmi_container {
+        width: 500px;
+        height: 250px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -250px;
+        margin-top: -125px;
+        text-align: center;
+    }
+
+    .tmi_container>h1 {
+        background-color: rgba(238, 166, 166, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+}
+
+
+
+/* 자바스크립트 or 제이쿼리로 상태값 변경 */
+/* .main {
+    display: none;
+} */
+/* 처음부터 메인 띄우려면 이렇게 해야 하네 흠 + jquery 수정*/
+
+.intro {
+    display: none;
+}
+
+.tmi {
+    display: none;
+}
+
+.main_view {
+    display: none;
+}
+
+.intro_view {
+    display: block;
+}
+
+.tmi_view {
+    display: block;
+}
+
+/* 공용으로 쓸 수 있는 클래스 */
+.first {
+    font-size: 3rem;
+    color: #292929;
+    font-weight: bold;
+}
