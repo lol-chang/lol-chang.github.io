@@ -138,6 +138,19 @@ h2 {
   background-color: #fff;
 }
 
+.about-text {
+  display: none;
+  padding-top: 5%;
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+}
+
+.about-text h1,
+.about-text p {
+  color: black;
+}
+
 .msg h1 {
   color: #3f3f3f;
 }
@@ -391,14 +404,16 @@ input {
   margin-bottom: 10px;
 }
 
-.mentor h1 {
+.mentor h1,
+.mentee h1 {
   color: black;
 }
 
 /* 이미지 스타일 */
 .mentor-card img,
 .mentee-card img {
-  max-width: 100%;
+  max-width: 250px;
+
 }
 
 /* 멘토/멘티 카드 내 텍스트 스타일 */
@@ -429,4 +444,16 @@ input {
 
 .contact-button:hover {
   background-color: #0056b3;
+}
+
+
+.about_img {
+  display: flex;
+  justify-content: space-between; /* 이미지들을 양 옆으로 분산 배치 */
+  align-items: center; /* 세로 방향 가운데 정렬 */
+}
+
+.about_img img {
+  max-width: 50%; /* 이미지 너비 최대값 설정 */
+  height: auto; /* 이미지 높이 자동 조정 */
 }
