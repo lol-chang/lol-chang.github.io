@@ -43,7 +43,7 @@ h2 {
 .grad-bar {
   width: 100%;
   height: 5px;
-  background: linear-gradient(-45deg, #EE7752, #e0b4c5, #23A6D5, #23D5AB);
+  background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
   background-size: 400% 400%;
   	-webkit-animation: gradbar 15s ease infinite;
 	-moz-animation: gradbar 15s ease infinite;
@@ -122,15 +122,23 @@ h2 {
 }
 
 .feature-container img {
-  width: 70%;
-  height: 40%;
-  /*
-  크기은 여기서 하고 작게하려면 가운데 정렬해야 할 듯 
-  */
+  width: 100%;
   margin-bottom: 15px;
 }
 
 /* SEARCH FUNCTION */
+
+#search-icon {
+  font-size: 0.9rem;
+  margin-top: 3px;
+  margin-left: 15px;
+  transition: color 0.3s ease-out;
+}
+
+#search-icon:hover {
+  color: #3498db;
+  cursor: pointer;
+}
 
 .search {
   transform: translate(-35%);
@@ -188,6 +196,23 @@ input {
   cursor: pointer;
 }
 
+#mobile-menu.is-active .bar:nth-child(2){
+  opacity: 0;
+}
+
+#mobile-menu.is-active .bar:nth-child(1){
+  -webkit-transform: translateY(8px) rotate(45deg);
+  -ms-transform: translateY(8px) rotate(45deg);
+  -o-transform: translateY(8px) rotate(45deg);
+  transform: translateY(8px) rotate(45deg);
+}
+
+#mobile-menu.is-active .bar:nth-child(3){
+  -webkit-transform: translateY(-8px) rotate(-45deg);
+  -ms-transform: translateY(-8px) rotate(-45deg);
+  -o-transform: translateY(-8px) rotate(-45deg);
+  transform: translateY(-8px) rotate(-45deg);
+}
 
 /* KEYFRAME ANIMATIONS */
 
@@ -308,7 +333,9 @@ input {
   
   /* SEARCH DISABLED ON MOBILE */
   
-  
+  #search-icon {
+    display: none;
+  }
   
   .search-input {
   display: none;
