@@ -13,6 +13,12 @@ h1, p {
   line-height: 1.4;
 }
 
+h2 {
+  color: #fff;
+  text-align: center;
+  line-height: 1.4;
+}
+
 h1 {
   font-size: 2.2rem;
 }
@@ -456,4 +462,31 @@ input {
 .about_img img {
   max-width: 50%; /* 이미지 너비 최대값 설정 */
   height: auto; /* 이미지 높이 자동 조정 */
+}
+
+.deco {
+  color: white; /* 글씨색을 흰색으로 설정 */
+  padding: 20px; /* 내용과의 여백을 주기 위한 패딩 설정 */
+}
+
+.deco span {
+  animation: colorChange 5s infinite;
+}
+
+@keyframes colorChange {
+  0% {
+    color: rgb(35, 148, 240);
+  }
+  25% {
+    color: #00ffcc; /* 밝은 청록색 */
+  }
+  50% {
+    color: #d0f069; /* 주황색 */
+  }
+  75% {
+    color: #5ab4f0; /* 연두색 */
+  }
+  100% {
+    color: #3eafe8; /* 보라색 */
+  }
 }
