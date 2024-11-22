@@ -1,192 +1,313 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-		<title>Creative Design Cube</title>
-		<meta property="og:title" content="Creative Design Cube">
-		<meta property="og:image" content="images/llo.jpg">
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="main.css" />
-    	
-	</head>
-	<body class="homepage is-preload">
-		<div id="page-wrapper">
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터 센터 모니터링 대시보드</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #166534;
+            --bg-light: #f0fdf4;
+            --text-gray: #6b7280;
+            --card-bg: white;
+        }
 
-			<!-- Header -->
-				<section id="header">
-					<div class="container">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-						<!-- Logo -->
-							<h1 id="logo"><a href="index.html">CREATIVE DESIGN CUBE</a></h1>
-							<p>편안한 디자인 외주 플랫폼</p>
+        body {
+            min-height: 100vh;
+            background-color: var(--bg-light);
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
 
-						<!-- Nav -->
-							<nav id="nav">
-								<ul>
-									<li><a class="icon solid fa-home" href="index.html"><span>서비스 소개</span></a></li>
-									<li>
-										<a href="#" class="icon fa-chart-bar"><span>디자이너</span></a>
-										<ul>
-											<li><a href="#">Lorem ipsum dolor</a></li>
-											<li><a href="#">Magna phasellus</a></li>
-											<li><a href="#">Etiam dolore nisl</a></li>
-											<li>
-												<a href="#">Phasellus consequat</a>
-												<ul>
-													<li><a href="#">Magna phasellus</a></li>
-													<li><a href="#">Etiam dolore nisl</a></li>
-													<li><a href="#">Phasellus consequat</a></li>
-												</ul>
-											</li>
-											<li><a href="#">Veroeros feugiat</a></li>
-										</ul>
-									</li>
-									<li><a class="icon solid fa-cog" href="left-sidebar.html"><span>포트폴리오</span></a></li>
-									<li><a class="icon solid fa-retweet" href="right-sidebar.html"><span> AI 구체화</span></a></li>
-									<li><a class="icon solid fa-sitemap" href="no-sidebar.html"><span>외주 연결 바로하기</span></a></li>
-								</ul>
-							</nav>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
 
-					</div>
-				</section>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
 
-			<!-- Features -->
-				<section id="features">
-					<div class="container">
-						<header>
-							<h2> <strong>디자이너 등급</strong></h2>
-						</header>
-						<div class="row aln-center">
-							<div class="col-4 col-6-medium col-12-small">
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-								<!-- Feature -->
-									<section>
-										<a href="#" class="image featured"><img src="images/d1.jpg" alt="" /></a>
-										<header>
-											<h3>⭐️⭐️⭐️⭐️⭐️</h3>
-										</header>
-										<p>새로운 디자인을 제시 / 외주 경험 100번 이상</p>
-									</section>
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-							</div>
-							<div class="col-4 col-6-medium col-12-small">
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
 
-								<!-- Feature -->
-									<section>
-										<a href="#" class="image featured"><img src="images/d2.jpg" alt="" /></a>
-										<header>
-											<h3>⭐️⭐️⭐️</h3>
-										</header>
-										<p>기존 디자인을 새롭게 구현 / 외주 레벨 중급</p>
-									</section>
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
 
-							</div>
-							<div class="col-4 col-6-medium col-12-small">
+        .card:hover {
+            transform: translateY(-5px);
+        }
 
-								<!-- Feature -->
-									<section>
-										<a href="#" class="image featured"><img src="images/d5.jpg" alt="" /></a>
-										<header>
-											<h3>⭐️</h3>
-										</header>
-										<p>AI 생성 이미지 수정-보완 / 외주 초보</p>
-									</section>
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
 
-							</div>
-							<div class="col-12">
-								<ul class="actions">
-									<li><a href="#" class="button icon solid fa-file">디자이너 선정하기</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</section>
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
 
-			<!-- Banner -->
-				<section id="banner">
-					<div class="container">
-						<p>디자인 AI를 사용 후, 전문 디자이너에게 수정을 맡겨보세요!</p>
-					</div>
-				</section>
+        .status-item {
+            background-color: #f9fafb;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
 
-			<!-- Main -->
-				<section id="main">
-					<div class="container">
-						<div class="row">
+        .status-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
 
-							<!-- Content -->
-								<div id="content" class="col-8 col-12-medium">
+        .status-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
 
-									<!-- Post -->
-										<article class="box post">
-											<header>
-												<h2><a href="#">디자이너 포트폴리오로 학습한 AI 사용해보기</a></h2>
-											</header>
-											<a href="#" class="image featured"><img src="images/main123.jpg" alt="" /></a>
-											<h3>Web Design AI</h3>
-											<p>웹 페이지 전문 디자이너 수백명의 포트폴리오를 기반으로 학습한 AI</p>
-											<ul class="actions">
-												<li><a href="#" class="button icon solid fa-file">AI 디자인 생성</a></li>
-											</ul>
-										</article>
+        .real-time-log {
+            max-height: 300px;
+            overflow-y: auto;
+            background-color: #f1f5f9;
+            padding: 1rem;
+            border-radius: 0.375rem;
+        }
 
-									<!-- Post -->
-										
+        .log-entry {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
 
-								</div>
+        .log-entry:last-child {
+            border-bottom: none;
+        }
 
-							<!-- Sidebar -->
-								<div id="sidebar" class="col-4 col-12-medium">
+        .log-icon {
+            font-size: 1.5rem;
+        }
 
-									<!-- Excerpts -->
-										<section>
-											<ul class="divided">
-												<li>
+        .log-time {
+            color: var(--text-gray);
+            font-size: 0.875rem;
+        }
 
-													<!-- Excerpt -->
-														<article class="box excerpt">
-															<header>
-																<span class="date">배너 생성 AI 사용하기</span>
-																<h3><a href="#"> </a></h3>
-															</header>
-															<p>배너 전문 디자이너 포트폴리오 수백개를 학습한 AI가 배너 광고판을 디자인합니다.</p>
-                              <p>원하는 부분을 체크하여 전문 디자이너에게 수정을 맡겨보세죠.</p>
-                              
-														</article>
+        .chart-container {
+            width: 100%;
+            height: 250px;
+        }
 
-												</li>
-												<li>
+        .cpu-control {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
 
-													<!-- Excerpt -->
-														<article class="box excerpt">
-															<header>
-																<span class="date">상품 디자인 AI 사용하기 </span>
-																<h3><a href="#">상품의 특성을 분석하여 새로운 디자인을 여러 개 만듭니다.</a></h3>
-															</header>
-															<p>상품의 특성과 어필하고자 하는 부분을 알려주세요.</p>
-                              <p>디자이너와 AI가 상품을 분석하여 새로운 디자인을 형성합니다.</p>
-														</article>
+        .slider {
+            width: 100%;
+            -webkit-appearance: none;
+            height: 10px;
+            background: #e0e0e0;
+            outline: none;
+            border-radius: 5px;
+        }
 
-												</li>
-												
-											</ul>
-										</section>
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            cursor: pointer;
+            border-radius: 50%;
+        }
 
-								</div>
+        .percentage-display {
+            font-weight: bold;
+            min-width: 60px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-server" style="color: white;"></i>
+                </div>
+                <div class="logo-text">DataCenter Hub</div>
+            </div>
+        </div>
 
-						</div>
-					</div>
-				</section>
+        <div class="card">
+            <h2 class="card-title">
+                <i class="fas fa-network-wired"></i>
+                연결된 데이터 센터 현황
+            </h2>
+            <div class="status-grid">
+                <div class="status-item">
+                    <i class="fas fa-microchip status-icon"></i>
+                    <div>CPU 사용률</div>
+                    <div class="status-value" id="cpuUsage">50%</div>
+                </div>
+                <div class="status-item">
+                    <i class="fas fa-memory status-icon"></i>
+                    <div>메모리 사용</div>
+                    <div class="status-value" id="memoryUsage">32%</div>
+                </div>
+                <div class="status-item">
+                    <i class="fas fa-hdd status-icon"></i>
+                    <div>디스크 공간</div>
+                    <div class="status-value" id="diskUsage">75%</div>
+                </div>
+            </div>
+            
+            <div class="cpu-control">
+                <input type="range" min="0" max="100" value="50" class="slider" id="cpuSlider">
+                <div class="percentage-display" id="cpuPercentage">50%</div>
+            </div>
+        </div>
 
-		</div>
+        <div class="card">
+            <h2 class="card-title">
+                <i class="fas fa-chart-line"></i>
+                실시간 성능 모니터링
+            </h2>
+            <div class="chart-container" id="performanceChart"></div>
+        </div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+        <div class="card">
+            <h2 class="card-title">
+                <i class="fas fa-clipboard-list"></i>
+                최근 시스템 로그
+            </h2>
+            <div class="real-time-log" id="systemLogs">
+                <!-- Logs will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
 
-	</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.3.0/echarts.min.js"></script>
+    <script>
+        const systemLogs = document.getElementById('systemLogs');
+        const cpuUsage = document.getElementById('cpuUsage');
+        const memoryUsage = document.getElementById('memoryUsage');
+        const diskUsage = document.getElementById('diskUsage');
+        const cpuSlider = document.getElementById('cpuSlider');
+        const cpuPercentage = document.getElementById('cpuPercentage');
+
+        // CPU 슬라이더 업데이트
+        cpuSlider.addEventListener('input', () => {
+            const value = cpuSlider.value;
+            cpuPercentage.textContent = `${value}%`;
+            cpuUsage.textContent = `${value}%`;
+        });
+
+        // Metrics 업데이트
+        function updateMetrics() {
+            memoryUsage.textContent = `${Math.floor(Math.random() * 100)}%`;
+            diskUsage.textContent = `${Math.floor(Math.random() * 100)}%`;
+        }
+
+        // 로그 생성
+        function generateLog(type) {
+            const logTypes = {
+                info: { icon: 'info-circle', color: 'blue' },
+                warning: { icon: 'exclamation-triangle', color: 'orange' },
+                error: { icon: 'times-circle', color: 'red' },
+                coin: { icon: 'coins', color: 'gold' }
+            };
+
+            const logType = logTypes[type];
+            const logEntry = document.createElement('div');
+            logEntry.classList.add('log-entry');
+            logEntry.innerHTML = `
+                <i class="fas fa-${logType.icon} log-icon" style="color: ${logType.color}"></i>
+                <span>${type.toUpperCase()} - ${type === 'coin' ? '코인을 받았습니다!' : '시스템 로그'}</span>
+                <span class="log-time">${new Date().toLocaleTimeString()}</span>
+            `;
+            systemLogs.prepend(logEntry);
+        }
+
+        // Performance Chart 초기화
+        function initPerformanceChart() {
+            const chartDom = document.getElementById('performanceChart');
+            const myChart = echarts.init(chartDom);
+
+            const option = {
+                tooltip: { trigger: 'axis' },
+                legend: { data: ['CPU', '메모리', '디스크'] },
+                xAxis: { type: 'category', data: ['1분', '5분', '15분', '30분', '1시간'] },
+                yAxis: { type: 'value', min: 0, max: 100 },
+                series: [
+                    { name: 'CPU', type: 'line', data: Array(5).fill(0).map(() => Math.floor(Math.random() * 100)) },
+                    { name: '메모리', type: 'line', data: Array(5).fill(0).map(() => Math.floor(Math.random() * 100)) },
+                    { name: '디스크', type: 'line', data: Array(5).fill(0).map(() => Math.floor(Math.random() * 100)) }
+                ]
+            };
+
+            myChart.setOption(option);
+        }
+
+        // Initialize Dashboard
+        function init() {
+            updateMetrics();
+            initPerformanceChart();
+            setInterval(() => generateLog('info'), 5000); // 5초마다 정보 로그
+            setInterval(() => generateLog('coin'), 3000); // 3초마다 코인 로그
+            setInterval(updateMetrics, 7000); // 7초마다 Metrics 업데이트
+        }
+
+        init();
+    </script>
+</body>
 </html>
