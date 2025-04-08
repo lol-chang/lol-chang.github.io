@@ -3,311 +3,575 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>데이터 센터 모니터링 대시보드</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>모바일 청첩장 쇼핑몰 - Wedding Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #166534;
-            --bg-light: #f0fdf4;
-            --text-gray: #6b7280;
-            --card-bg: white;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            background-color: var(--bg-light);
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background-color: var(--primary-color);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-text {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
+        .card-hover:hover {
             transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
+        .gradient-bg {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
-
-        .status-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
+        .mobile-preview {
+            width: 300px;
+            height: 600px;
+            border-radius: 30px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            position: relative;
         }
-
-        .status-item {
-            background-color: #f9fafb;
-            border-radius: 0.375rem;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .status-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        .status-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .real-time-log {
-            max-height: 300px;
-            overflow-y: auto;
-            background-color: #f1f5f9;
-            padding: 1rem;
-            border-radius: 0.375rem;
-        }
-
-        .log-entry {
-            display: flex;
-            justify-content: space-between;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .log-entry:last-child {
-            border-bottom: none;
-        }
-
-        .log-icon {
-            font-size: 1.5rem;
-        }
-
-        .log-time {
-            color: var(--text-gray);
-            font-size: 0.875rem;
-        }
-
-        .chart-container {
+        .mobile-screen {
             width: 100%;
-            height: 250px;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
         }
-
-        .cpu-control {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1rem;
+        .category-tab {
+            transition: all 0.3s ease;
         }
-
-        .slider {
-            width: 100%;
-            -webkit-appearance: none;
-            height: 10px;
-            background: #e0e0e0;
-            outline: none;
-            border-radius: 5px;
+        .category-tab:hover {
+            background-color: rgba(255, 255, 255, 0.2);
         }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-color);
-            cursor: pointer;
-            border-radius: 50%;
-        }
-
-        .percentage-display {
-            font-weight: bold;
-            min-width: 60px;
-            text-align: center;
+        .category-tab.active {
+            background-color: white;
+            color: #4f46e5;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <div class="header">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-server" style="color: white;"></i>
-                </div>
-                <div class="logo-text">DataCenter Hub</div>
+<body class="gradient-bg min-h-screen">
+    <!-- 헤더 영역 -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-ring text-3xl text-purple-600 mr-2"></i>
+                <h1 class="text-2xl font-bold text-gray-800">Wedding Card</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="hidden md:block px-4 py-2 text-gray-600 hover:text-purple-600">
+                    <i class="fas fa-search mr-2"></i>검색
+                </button>
+                <button class="hidden md:block px-4 py-2 text-gray-600 hover:text-purple-600">
+                    <i class="fas fa-heart mr-2"></i>찜한템플릿
+                </button>
+                <button class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+                    <i class="fas fa-user mr-2"></i>로그인
+                </button>
             </div>
         </div>
+    </header>
 
-        <div class="card">
-            <h2 class="card-title">
-                <i class="fas fa-network-wired"></i>
-                연결된 데이터 센터 현황
-            </h2>
-            <div class="status-grid">
-                <div class="status-item">
-                    <i class="fas fa-microchip status-icon"></i>
-                    <div>CPU 사용률</div>
-                    <div class="status-value" id="cpuUsage">50%</div>
+    <!-- 메인 배너 -->
+    <section class="relative">
+        <div class="container mx-auto px-4 py-12 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">아름다운 모바일 청첩장을 만나보세요</h2>
+                <p class="text-lg text-gray-600 mb-6">100가지 이상의 예쁜 디자인과 쉽게 커스터마이징 가능한 템플릿으로 특별한 날을 더욱 특별하게</p>
+                <div class="flex space-x-4">
+                    <button class="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition font-medium">
+                        지금 시작하기 <i class="fas fa-arrow-right ml-2"></i>
+                    </button>
+                    <button class="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100 transition font-medium">
+                        <i class="fas fa-play-circle mr-2"></i>사용방법 보기
+                    </button>
                 </div>
-                <div class="status-item">
-                    <i class="fas fa-memory status-icon"></i>
-                    <div>메모리 사용</div>
-                    <div class="status-value" id="memoryUsage">32%</div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="mobile-preview">
+                    <div class="mobile-screen" style="background-image: url('https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80');"></div>
                 </div>
-                <div class="status-item">
-                    <i class="fas fa-hdd status-icon"></i>
-                    <div>디스크 공간</div>
-                    <div class="status-value" id="diskUsage">75%</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 카테고리 탭 -->
+    <section class="bg-white py-6 sticky top-0 z-10 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex overflow-x-auto space-x-2 pb-2">
+                <button class="category-tab active px-6 py-2 rounded-full font-medium whitespace-nowrap">
+                    전체보기
+                </button>
+                <button class="category-tab px-6 py-2 rounded-full font-medium whitespace-nowrap bg-gray-100 text-gray-700">
+                    <i class="fas fa-heart mr-2 text-red-400"></i>러블리
+                </button>
+                <button class="category-tab px-6 py-2 rounded-full font-medium whitespace-nowrap bg-gray-100 text-gray-700">
+                    <i class="fas fa-leaf mr-2 text-green-500"></i>네추럴
+                </button>
+                <button class="category-tab px-6 py-2 rounded-full font-medium whitespace-nowrap bg-gray-100 text-gray-700">
+                    <i class="fas fa-gem mr-2 text-blue-400"></i>모던
+                </button>
+                <button class="category-tab px-6 py-2 rounded-full font-medium whitespace-nowrap bg-gray-100 text-gray-700">
+                    <i class="fas fa-paint-brush mr-2 text-yellow-500"></i>아트
+                </button>
+                <button class="category-tab px-6 py-2 rounded-full font-medium whitespace-nowrap bg-gray-100 text-gray-700">
+                    <i class="fas fa-crown mr-2 text-purple-400"></i>고급스러운
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 청첩장 템플릿 목록 -->
+    <section class="container mx-auto px-4 py-12">
+        <div class="flex justify-between items-center mb-8">
+            <h3 class="text-2xl font-bold text-gray-800">인기 청첩장 템플릿</h3>
+            <a href="#" class="text-purple-600 hover:text-purple-800 font-medium">더보기 <i class="fas fa-chevron-right ml-1"></i></a>
+        </div>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- 청첩장 카드 1 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D3D&auto=format&fit=crop&w=1740&q=80" alt="청첩장 템플릿" class="w-full h-full object-cover">
+                    <div class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                        <i class="fas fa-heart text-gray-400 hover:text-red-500 cursor-pointer"></i>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-gray-800">로맨틱 플라워</h4>
+                        <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">BEST</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">우아한 꽃무늬 디자인의 클래식한 청첩장</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span class="text-gray-700 font-medium">4.9</span>
+                            <span class="text-gray-400 mx-1">|</span>
+                            <span class="text-gray-500 text-sm">1,234개</span>
+                        </div>
+                        <span class="font-bold text-purple-600">₩12,000</span>
+                    </div>
                 </div>
             </div>
             
-            <div class="cpu-control">
-                <input type="range" min="0" max="100" value="50" class="slider" id="cpuSlider">
-                <div class="percentage-display" id="cpuPercentage">50%</div>
+            <!-- 청첩장 카드 2 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="청첩장 템플릿" class="w-full h-full object-cover">
+                    <div class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                        <i class="fas fa-heart text-gray-400 hover:text-red-500 cursor-pointer"></i>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-gray-800">모던 엘레강스</h4>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">NEW</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">심플하면서도 고급스러운 디자인의 청첩장</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span class="text-gray-700 font-medium">4.8</span>
+                            <span class="text-gray-400 mx-1">|</span>
+                            <span class="text-gray-500 text-sm">876개</span>
+                        </div>
+                        <span class="font-bold text-purple-600">₩15,000</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 청첩장 카드 3 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="청첩장 템플릿" class="w-full h-full object-cover">
+                    <div class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                        <i class="fas fa-heart text-gray-400 hover:text-red-500 cursor-pointer"></i>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-gray-800">우드 앤 그린</h4>
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">ECO</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">자연 친화적인 목재 느낌의 청첩장</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span class="text-gray-700 font-medium">4.7</span>
+                            <span class="text-gray-400 mx-1">|</span>
+                            <span class="text-gray-500 text-sm">1,542개</span>
+                        </div>
+                        <span class="font-bold text-purple-600">₩10,000</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 청첩장 카드 4 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="청첩장 템플릿" class="w-full h-full object-cover">
+                    <div class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                        <i class="fas fa-heart text-gray-400 hover:text-red-500 cursor-pointer"></i>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-gray-800">페어리 테일</h4>
+                        <span class="bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded">HOT</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">동화 속 같은 판타지 감성의 청첩장</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span class="text-gray-700 font-medium">4.9</span>
+                            <span class="text-gray-400 mx-1">|</span>
+                            <span class="text-gray-500 text-sm">2,103개</span>
+                        </div>
+                        <span class="font-bold text-purple-600">₩18,000</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 청첩장 카드 5 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="청첩장 템플릿" class="w-full h-full object-cover">
+                    <div class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                        <i class="fas fa-heart text-gray-400 hover:text-red-500 cursor-pointer"></i>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-gray-800">클래식 골드</h4>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">PREMIUM</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">고급스러운 골드 액자 디자인의 청첩장</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span class="text-gray-700 font-medium">5.0</span>
+                            <span class="text-gray-400 mx-1">|</span>
+                            <span class="text-gray-500 text-sm">932개</span>
+                        </div>
+                        <span class="font-bold text-purple-600">₩25,000</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 청첩장 카드 6 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="청첩장 템플릿" class="w-full h-full object-cover">
+                    <div class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                        <i class="fas fa-heart text-gray-400 hover:text-red-500 cursor-pointer"></i>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-gray-800">미니멀 라인</h4>
+                        <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded">SIMPLE</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">깔끔한 라인 디자인의 심플한 청첩장</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span class="text-gray-700 font-medium">4.6</span>
+                            <span class="text-gray-400 mx-1">|</span>
+                            <span class="text-gray-500 text-sm">765개</span>
+                        </div>
+                        <span class="font-bold text-purple-600">₩8,000</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 청첩장 카드 7 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80" alt="청첩장 템플릿" class="w-full h-full object-cover">
+                    <div class="absolute top-2 right-2 bg-white rounded-full p-2 shadow">
+                        <i class="fas fa-heart text-gray-400 hover:text-red-500 cursor-pointer"></i>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-gray-800">빈티지 레트로</h4>
+                        <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded">VINTAGE</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb-3">옛날 감성의 레트로 스타일 청첩장</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span class="text-gray-700 font-medium">4.7</span>
+                            <span class="text-gray-400 mx-1">|</span>
+                            <span class="text-gray-500 text-sm">1,087개</span>
+                        </div>
+                        <span class="font-bold text-purple-600">₩13,000</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 청첩장 카드 8 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300">
+                <div class="relative h-48 overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D3D&auto=format&fit=crop&w=1740&q=80" alt="청첩장 템플릿" class="w-full h-full object-cover">
+                    <div class="absolute top-2 right-2 bg-white rounded-full p=2 shadow">
+                        <i class="fas fa-heart text-gray-400 hover:text-red-500 cursor-pointer"></i>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-2">
+                        <h4 class="font-bold text-lg text-gray-800">파스텔 드림</h4>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">NEW</span>
+                    </div>
+                    <p class="text-gray-600 text-sm mb=3">부드러운 파스텔 톤의 꿈결 같은 청첩장</p>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span class="text-gray-700 font-medium">4.8</span>
+                            <span class="text-gray-400 mx-1">|</span>
+                            <span class="text-gray-500 text-sm">654개</span>
+                        </div>
+                        <span class="font-bold text-purple-600">₩14,000</span>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="card">
-            <h2 class="card-title">
-                <i class="fas fa-chart-line"></i>
-                실시간 성능 모니터링
-            </h2>
-            <div class="chart-container" id="performanceChart"></div>
+        
+        <div class="mt-12 text-center">
+            <button class="px-6 py-3 border border-purple-600 text-purple-600 rounded-lg hover:bg-purple-50 transition font-medium">
+                더 많은 템플릿 보기 <i class="fas fa-chevron-down ml-2"></i>
+            </button>
         </div>
+    </section>
 
-        <div class="card">
-            <h2 class="card-title">
-                <i class="fas fa-clipboard-list"></i>
-                최근 시스템 로그
-            </h2>
-            <div class="real-time-log" id="systemLogs">
-                <!-- Logs will be dynamically inserted here -->
+    <!-- 사용자 리뷰 섹션 -->
+    <section class="bg-purple-50 py-16">
+        <div class="container mx-auto px-4">
+            <h3 class="text-2xl font-bold text-center text-gray-800 mb-12">실제 사용자들의 리뷰</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- 리뷰 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-purple-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">김지현</h4>
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"템플릿이 너무 예뻐서 친구들한테 칭찬 많이 받았어요. 수정도 쉽게 할 수 있어서 좋았습니다!"</p>
+                    <p class="text-gray-400 text-sm">로맨틱 플라워 템플릿 사용</p>
+                </div>
+                
+                <!-- 리뷰 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-purple-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">박민준</h4>
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"고급스러운 디자인을 찾고 있었는데 클래식 골드 템플릿이 딱이었어요. 결혼식 분위기랑도 잘 어울렸습니다."</p>
+                    <p class="text-gray-400 text-sm">클래식 골드 템플릿 사용</p>
+                </div>
+                
+                <!-- 리뷰 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-purple-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">이수민</h4>
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star-half-alt text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-4">"커스터마이징이 자유로워서 우리만의 스타일로 만들 수 있었어요. 다만 일부 기능이 조금 복잡했어요."</p>
+                    <p class="text-gray-400 text-sm">모던 엘레강스 템플릿 사용</p>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.3.0/echarts.min.js"></script>
+    <!-- FAQ 섹션 -->
+    <section class="container mx-auto px-4 py-16">
+        <h3 class="text-2xl font-bold text-center text-gray-800 mb-12">자주 묻는 질문</h3>
+        
+        <div class="max-w-3xl mx-auto space-y-4">
+            <!-- FAQ 1 -->
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="flex justify-between items-center w-full p-4 bg-white hover:bg-gray-50 transition">
+                    <span class="font-medium text-gray-800">템플릿을 구매하면 어떻게 사용하나요?</span>
+                    <i class="fas fa-chevron-down text-purple-600 transition-transform duration-300"></i>
+                </button>
+                <div class="p-4 bg-gray-50 hidden">
+                    <p class="text-gray-600">템플릿 구매 후 '내 템플릿' 페이지에서 다운로드할 수 있습니다. 다운로드한 파일에는 사용 설명서가 포함되어 있으며, 웹사이트에서도 단계별 가이드를 제공하고 있습니다.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 2 -->
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="flex justify-between items-center w-full p-4 bg-white hover:bg-gray-50 transition">
+                    <span class="font-medium text-gray-800">구매 전에 템플릿을 미리 볼 수 있나요?</span>
+                    <i class="fas fa-chevron-down text-purple-600 transition-transform duration-300"></i>
+                </button>
+                <div class="p-4 bg-gray-50 hidden">
+                    <p class="text-gray-600">네, 모든 템플릿은 구매 전에 데모 버전으로 확인할 수 있습니다. 템플릿 상세 페이지에서 '미리보기' 버튼을 클릭하면 샘플 청첩장을 확인할 수 있습니다.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 3 -->
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="flex justify-between items-center w-full p-4 bg-white hover:bg-gray-50 transition">
+                    <span class="font-medium text-gray-800">템플릿을 커스터마이징할 수 있나요?</span>
+                    <i class="fas fa-chevron-down text-purple-600 transition-transform duration-300"></i>
+                </button>
+                <div class="p-4 bg-gray-50 hidden">
+                    <p class="text-gray-600">대부분의 템플릿은 사진, 텍스트, 색상 등을 자유롭게 변경할 수 있습니다. 일부 프리미엄 템플릿은 더 많은 커스터마이징 옵션을 제공합니다. 각 템플릿의 상세 설명에서 지원하는 편집 기능을 확인할 수 있습니다.</p>
+                </div>
+            </div>
+            
+            <!-- FAQ 4 -->
+            <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <button class="flex justify-between items-center w-full p-4 bg-white hover:bg-gray-50 transition">
+                    <span class="font-medium text-gray-800">환불 정책은 어떻게 되나요?</span>
+                    <i class="fas fa-chevron-down text-purple-600 transition-transform duration-300"></i>
+                </button>
+                <div class="p-4 bg-gray-50 hidden">
+                    <p class="text-gray-600">디지털 제품 특성상 일반적으로 환불이 불가능합니다. 다만, 기술적 문제로 인해 템플릿을 사용할 수 없는 경우 7일 이내로 환불 요청을 접수해 주시면 검토 후 환불 처리해 드립니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-ring text-3xl text-purple-400 mr-2"></i>
+                        <h3 class="text-2xl font-bold">Wedding Card</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">특별한 순간을 더욱 특별하게 만들어 드립니다.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center hover:bg-purple-600 transition">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">서비스</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">템플릿 둘러보기</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">가격 정책</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">사용 방법</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">고객 후기</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">고객 지원</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">문의하기</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">자주 묻는 질문</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">이용 약관</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">개인정보 처리방침</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">뉴스레터 구독</h4>
+                    <p class="text-gray-400 mb-4">새로운 템플릿과 할인 소식을 가장 먼저 받아보세요!</p>
+                    <div class="flex">
+                        <input type="email" placeholder="이메일 주소" class="px-4 py-2 bg-gray-700 text-white rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-600 w-full">
+                        <button class="px-4 py-2 bg-purple-600 text-white rounded-r-lg hover:bg-purple-700 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 Wedding Card. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        const systemLogs = document.getElementById('systemLogs');
-        const cpuUsage = document.getElementById('cpuUsage');
-        const memoryUsage = document.getElementById('memoryUsage');
-        const diskUsage = document.getElementById('diskUsage');
-        const cpuSlider = document.getElementById('cpuSlider');
-        const cpuPercentage = document.getElementById('cpuPercentage');
-
-        // CPU 슬라이더 업데이트
-        cpuSlider.addEventListener('input', () => {
-            const value = cpuSlider.value;
-            cpuPercentage.textContent = `${value}%`;
-            cpuUsage.textContent = `${value}%`;
+        // FAQ 아코디언 기능
+        document.querySelectorAll('.border-gray-200 button').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const content = button.nextElementSibling;
+                const icon = button.querySelector('i');
+                
+                // 현재 항목의 상태 확인
+                const isOpen = content.classList.contains('hidden');
+                
+                // 모든 FAQ 항목 닫기
+                document.querySelectorAll('.border-gray-200 .bg-gray-50').forEach(item => {
+                    item.classList.add('hidden');
+                    item.previousElementSibling.querySelector('i').classList.remove('fa-chevron-up');
+                    item.previousElementSibling.querySelector('i').classList.add('fa-chevron-down');
+                });
+                
+                // 현재 항목만 토글
+                if (isOpen) {
+                    content.classList.remove('hidden');
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                }
+            });
         });
-
-        // Metrics 업데이트
-        function updateMetrics() {
-            memoryUsage.textContent = `${Math.floor(Math.random() * 100)}%`;
-            diskUsage.textContent = `${Math.floor(Math.random() * 100)}%`;
-        }
-
-        // 로그 생성
-        function generateLog(type) {
-            const logTypes = {
-                info: { icon: 'info-circle', color: 'blue' },
-                warning: { icon: 'exclamation-triangle', color: 'orange' },
-                error: { icon: 'times-circle', color: 'red' },
-                coin: { icon: 'coins', color: 'gold' }
-            };
-
-            const logType = logTypes[type];
-            const logEntry = document.createElement('div');
-            logEntry.classList.add('log-entry');
-            logEntry.innerHTML = `
-                <i class="fas fa-${logType.icon} log-icon" style="color: ${logType.color}"></i>
-                <span>${type.toUpperCase()} - ${type === 'coin' ? '코인을 받았습니다!' : '시스템 로그'}</span>
-                <span class="log-time">${new Date().toLocaleTimeString()}</span>
-            `;
-            systemLogs.prepend(logEntry);
-        }
-
-        // Performance Chart 초기화
-        function initPerformanceChart() {
-            const chartDom = document.getElementById('performanceChart');
-            const myChart = echarts.init(chartDom);
-
-            const option = {
-                tooltip: { trigger: 'axis' },
-                legend: { data: ['CPU', '메모리', '디스크'] },
-                xAxis: { type: 'category', data: ['1분', '5분', '15분', '30분', '1시간'] },
-                yAxis: { type: 'value', min: 0, max: 100 },
-                series: [
-                    { name: 'CPU', type: 'line', data: Array(5).fill(0).map(() => Math.floor(Math.random() * 100)) },
-                    { name: '메모리', type: 'line', data: Array(5).fill(0).map(() => Math.floor(Math.random() * 100)) },
-                    { name: '디스크', type: 'line', data: Array(5).fill(0).map(() => Math.floor(Math.random() * 100)) }
-                ]
-            };
-
-            myChart.setOption(option);
-        }
-
-        // Initialize Dashboard
-        function init() {
-            updateMetrics();
-            initPerformanceChart();
-            setInterval(() => generateLog('info'), 5000); // 5초마다 정보 로그
-            setInterval(() => generateLog('coin'), 3000); // 3초마다 코인 로그
-            setInterval(updateMetrics, 7000); // 7초마다 Metrics 업데이트
-        }
-
-        init();
+        
+        // 카테고리 탭 기능
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.category-tab').forEach(t => {
+                    t.classList.remove('active');
+                    t.classList.add('bg-gray-100', 'text-gray-700');
+                });
+                
+                tab.classList.add('active');
+                tab.classList.remove('bg-gray-100', 'text-gray-700');
+            });
+        });
+        
+        // 찜하기 기능
+        document.querySelectorAll('.fa-heart').forEach(heart => {
+            heart.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (heart.classList.contains('text-red-500')) {
+                    heart.classList.remove('text-red-500');
+                    heart.classList.add('text-gray-400');
+                } else {
+                    heart.classList.remove('text-gray-400');
+                    heart.classList.add('text-red-500');
+                }
+            });
+        });
     </script>
 </body>
 </html>
